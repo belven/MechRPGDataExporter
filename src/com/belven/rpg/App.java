@@ -4,6 +4,8 @@ import java.io.File;
 import java.io.FileWriter;
 import java.util.ArrayList;
 
+import com.belven.rpg.items.Armour;
+import com.belven.rpg.items.ArmourPosition;
 import com.belven.rpg.items.Item;
 import com.belven.rpg.items.LaserWeapon;
 import com.belven.rpg.items.MeleeWeapon;
@@ -17,13 +19,19 @@ public class App {
 	static String tablesFolder = "D:\\Unreal Projects\\MechRPG\\Source\\Tables";
 
 	static {
-		tablesRows.add(LaserWeapon.CreateLaserWeapon("Test Laser Weapon 1", "Some Mesh 1", 1, 500, 30, false, "Particle Path"));
-		tablesRows.add(LaserWeapon.CreateLaserWeapon("Test Laser Weapon 2", "Some Mesh 2", 1, 500, 30, false, "Particle Path"));
-		tablesRows.add(LaserWeapon.CreateLaserWeapon("Test Laser Weapon 3", "Some Mesh 3", 1, 500, 30, false, "Particle Path"));
-		tablesRows.add(MeleeWeapon.CreateMeleeWeapon("Test Laser Weapon 4", "Some Mesh 4", 1, 500, 30, false, 300));
-		tablesRows.add(LaserWeapon.CreateLaserWeapon("Test Laser Weapon 5", "Some Mesh 5", 1, 500, 30, false, "Particle Path"));
-		tablesRows.add(MeleeWeapon.CreateMeleeWeapon("Test Laser Weapon 6", "Some Mesh 6", 1, 500, 30, false, 300));
-		tablesRows.add(LaserWeapon.CreateLaserWeapon("Test Laser Weapon 7", "Some Mesh 7", 1, 500, 30, false, "Particle Path"));
+		tablesRows.add(LaserWeapon.CreateLaserWeapon("Test Laser Weapon 1", "Laser 1", 1, 500, 30, false, "Particle Path"));
+		tablesRows.add(LaserWeapon.CreateLaserWeapon("Test Laser Weapon 2", "Laser 2", 1, 500, 30, false, "Particle Path"));
+		tablesRows.add(LaserWeapon.CreateLaserWeapon("Test Laser Weapon 3", "Laser 3", 1, 500, 30, false, "Particle Path"));
+		tablesRows.add(MeleeWeapon.CreateMeleeWeapon("Test Melee Weapon 1", "Melee 1", 1, 500, 30, false, 300));
+		tablesRows.add(LaserWeapon.CreateLaserWeapon("Test Laser Weapon 4", "Laser 4", 1, 500, 30, false, "Particle Path"));
+		tablesRows.add(MeleeWeapon.CreateMeleeWeapon("Test Melee Weapon 2", "Melee 2", 1, 500, 30, false, 300));
+		tablesRows.add(LaserWeapon.CreateLaserWeapon("Test Laser Weapon 5", "Laser 5", 1, 500, 30, false, "Particle Path"));
+		tablesRows.add(Armour.CreateArmour("Headpiece", "Head", 1, ArmourPosition.Head, 0.1f, 0.1f, 0.1f));
+		tablesRows.add(Armour.CreateArmour("Chestpiece", "Chest", 1, ArmourPosition.Chest, 0.1f, 0.1f, 0.1f));
+		tablesRows.add(Armour.CreateArmour("Left Arm", "Arm", 1, ArmourPosition.LeftArm, 0.1f, 0.1f, 0.1f));
+		tablesRows.add(Armour.CreateArmour("Right Arm", "Arm", 1, ArmourPosition.RightArm, 0.1f, 0.1f, 0.1f));
+		tablesRows.add(Armour.CreateArmour("Left Leg", "Leg", 1, ArmourPosition.LeftLeg, 0.1f, 0.1f, 0.1f));
+		tablesRows.add(Armour.CreateArmour("Right Leg", "Leg", 1, ArmourPosition.RightLeg, 0.1f, 0.1f, 0.1f));
 	}
 
 	public App() {
@@ -50,6 +58,16 @@ public class App {
 		SaveRangedWeapons();
 		SaveLaserWeapons();
 		SaveMeleeWeapons();
+		SaveArmour();
+	}
+
+	private static void SaveArmour() {
+		ArrayList<String[]> data = new ArrayList<String[]>();
+
+		for (Armour i : Armour.armour) {
+			data.add(i.CreateData());
+		}
+		SaveData(data, tablesFolder + Armour.ArmourTable);
 	}
 
 	public static void SaveItems() {

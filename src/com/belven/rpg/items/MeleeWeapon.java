@@ -26,17 +26,8 @@ public class MeleeWeapon extends RowData {
 	}
 
 	public static MeleeWeapon CreateMeleeWeapon(String inName, String inMesh, int inMaxStack, float inRange, float inHealthChange, boolean inHeals, float inCleaveRadius) {
-		Item i = new Item();
-		i.name = inName;
-		i.name = inName;
-		i.mesh = inMesh;
-		i.maxStatck = inMaxStack;
-
-		Weapon w = new Weapon();
-		w.range = inRange;
-		w.healthChange = inHealthChange;
-		w.heals = inHeals;
-		w.itemID = i.ID;
+		Item i = Item.CreateItem(inName, inMesh, inMaxStack, ItemType.Weapon);
+		Weapon w = Weapon.CreateWeapon(i.ID, inRange, inHealthChange, inHeals, WeaponType.Melee);
 
 		MeleeWeapon mw = new MeleeWeapon();
 		mw.cleaveRadius = inCleaveRadius;

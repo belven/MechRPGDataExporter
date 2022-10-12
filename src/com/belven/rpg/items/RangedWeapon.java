@@ -16,6 +16,13 @@ public class RangedWeapon extends RowData {
 		rangedWeapons.add(this);
 
 	}
+	
+	public static RangedWeapon CreateRangedWeapon(int weaponID) {
+		RangedWeapon rw = new RangedWeapon();
+		rw.weaponID = weaponID;
+		return rw;
+	}
+
 
 	@Override
 	public String[] CreateData() {

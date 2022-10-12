@@ -26,21 +26,9 @@ public class LaserWeapon extends RowData {
 	}
 
 	public static LaserWeapon CreateLaserWeapon(String inName, String inMesh, int inMaxStack, float inRange, float inHealthChange, boolean inHeals, String inParticle) {
-
-		Item i = new Item();
-		i.name = inName;
-		i.name = inName;
-		i.mesh = inMesh;
-		i.maxStatck = inMaxStack;
-
-		Weapon w = new Weapon();
-		w.range = inRange;
-		w.healthChange = inHealthChange;
-		w.heals = inHeals;
-		w.itemID = i.ID;
-
-		RangedWeapon rw = new RangedWeapon();
-		rw.weaponID = w.ID;
+		Item i = Item.CreateItem(inName, inMesh, inMaxStack, ItemType.Weapon);
+		Weapon w = Weapon.CreateWeapon(i.ID, inRange, inHealthChange, inHeals, WeaponType.Laser);
+		RangedWeapon rw = RangedWeapon.CreateRangedWeapon(w.ID);
 
 		LaserWeapon lw = new LaserWeapon();
 		lw.particle = inParticle;
