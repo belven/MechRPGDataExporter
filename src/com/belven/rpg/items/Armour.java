@@ -34,12 +34,12 @@ public class Armour extends RowData {
 	@Override
 	public String[] CreateData() {
 		ArrayList<String> rowData = new ArrayList<String>();
-		rowData.add(String.valueOf(ID));
-		rowData.add(String.valueOf(itemID));
+		rowData.add(GetString(ID));
+		rowData.add(GetString(itemID));
 		rowData.add(armourPosition.toString());
-		rowData.add(String.valueOf(physicalResistance));
-		rowData.add(String.valueOf(blastResistance));
-		rowData.add(String.valueOf(energyResistance));
+		rowData.add(GetString(physicalResistance));
+		rowData.add(GetString(blastResistance));
+		rowData.add(GetString(energyResistance));
 		return rowData.toArray(new String[0]);
 	}
 

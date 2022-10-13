@@ -19,9 +19,9 @@ public class MeleeWeapon extends RowData {
 
 	public String[] CreateData() {
 		ArrayList<String> rowData = new ArrayList<String>();
-		rowData.add(String.valueOf(ID));
-		rowData.add(String.valueOf(weaponID));
-		rowData.add(String.valueOf(cleaveRadius));
+		rowData.add(GetString(ID));
+		rowData.add(GetString(weaponID));
+		rowData.add(GetString(cleaveRadius));
 		return rowData.toArray(new String[0]);
 	}
 

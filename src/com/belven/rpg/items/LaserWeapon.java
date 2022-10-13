@@ -18,17 +18,16 @@ public class LaserWeapon extends RowData {
 
 	public String[] CreateData() {
 		ArrayList<String> rowData = new ArrayList<String>();
-
-		rowData.add(String.valueOf(ID));
-		rowData.add(String.valueOf(rangedWeaponID));
+		rowData.add(GetString(ID));
+		rowData.add(GetString(rangedWeaponID));
 		rowData.add(particle);
 		return rowData.toArray(new String[0]);
 	}
 
-	public static LaserWeapon CreateLaserWeapon(String inName, String inMesh, int inMaxStack, float inRange, float inHealthChange, boolean inHeals, String inParticle) {
+	public static LaserWeapon CreateLaserWeapon(String inName, String inMesh, int inMaxStack, float inRange, float inHealthChange, boolean inHeals, float accuracy, String inParticle) {
 		Item i = Item.CreateItem(inName, inMesh, inMaxStack, ItemType.Weapon);
 		Weapon w = Weapon.CreateWeapon(i.ID, inRange, inHealthChange, inHeals, WeaponType.Laser);
-		RangedWeapon rw = RangedWeapon.CreateRangedWeapon(w.ID);
+		RangedWeapon rw = RangedWeapon.CreateRangedWeapon(w.ID, accuracy);
 
 		LaserWeapon lw = new LaserWeapon();
 		lw.particle = inParticle;

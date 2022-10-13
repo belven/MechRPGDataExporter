@@ -7,6 +7,7 @@ public class RangedWeapon extends RowData {
 	public static String RangedWeaponTable = "\\RangedWeaponData.csv";
 
 	int weaponID;
+	float accuracy;
 
 	public RangedWeapon() {
 		if (rangedWeapons.size() > 0) {
@@ -17,9 +18,10 @@ public class RangedWeapon extends RowData {
 
 	}
 	
-	public static RangedWeapon CreateRangedWeapon(int weaponID) {
+	public static RangedWeapon CreateRangedWeapon(int weaponID, float accuracy) {
 		RangedWeapon rw = new RangedWeapon();
 		rw.weaponID = weaponID;
+		rw.accuracy = accuracy;
 		return rw;
 	}
 
@@ -27,8 +29,9 @@ public class RangedWeapon extends RowData {
 	@Override
 	public String[] CreateData() {
 		ArrayList<String> rowData = new ArrayList<String>();
-		rowData.add(String.valueOf(ID));
-		rowData.add(String.valueOf(weaponID));
+		rowData.add(GetString(ID));
+		rowData.add(GetString(weaponID));
+		rowData.add(String.valueOf(accuracy));
 		return rowData.toArray(new String[0]);
 	}
 

@@ -32,11 +32,12 @@ public class Weapon extends RowData {
 
 	public String[] CreateData() {
 		ArrayList<String> rowData = new ArrayList<String>();
-		rowData.add(String.valueOf(ID));
-		rowData.add(String.valueOf(itemID));
+		rowData.add(GetString(ID));
+		rowData.add(GetString(itemID));
 		rowData.add(type.toString());
-		rowData.add(String.valueOf(range));
-		rowData.add(String.valueOf(healthChange));
+		rowData.add(GetString(range));
+		rowData.add(GetString(healthChange));
+		rowData.add(GetString(heals));		
 		return rowData.toArray(new String[0]);
 	}
 

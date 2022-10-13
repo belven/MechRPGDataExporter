@@ -36,11 +36,11 @@ public class Item extends RowData {
 	@Override
 	public String[] CreateData() {
 		ArrayList<String> rowData = new ArrayList<String>();
-		rowData.add(String.valueOf(ID));
+		rowData.add(GetString(ID));
 		rowData.add(name);
 		rowData.add(type.toString());
 		rowData.add(mesh);
-		rowData.add(String.valueOf(maxStatck));
+		rowData.add(GetString(maxStatck));
 		return rowData.toArray(new String[0]);
 	}
 }
