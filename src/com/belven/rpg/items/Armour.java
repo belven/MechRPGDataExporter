@@ -13,6 +13,7 @@ public class Armour extends RowData {
 	float energyResistance;
 
 	public Armour() {
+		super(ArmourTable);
 		if (armour.size() > 0) {
 			ID = GetLastID() + 1;
 		}
@@ -20,8 +21,9 @@ public class Armour extends RowData {
 		armour.add(this);
 	}
 
-	public static Armour CreateArmour(String name, String mesh, int maxStatck, ArmourPosition armourPosition, float physicalResistance, float blastResistance, float energyResistance) {
-		Item i = Item.CreateItem(name, mesh, maxStatck, ItemType.Armour);
+	public static Armour CreateArmour(ItemData itemData,ArmourPosition armourPosition, float physicalResistance, float blastResistance, float energyResistance) {
+		itemData.type = ItemType.Armour;
+		Item i = Item.CreateItem(itemData);
 		Armour a = new Armour();
 		a.itemID = i.ID;
 		a.armourPosition = armourPosition;

@@ -10,6 +10,7 @@ public class RangedWeapon extends RowData {
 	float accuracy;
 
 	public RangedWeapon() {
+		super(RangedWeaponTable);
 		if (rangedWeapons.size() > 0) {
 			ID = GetLastID() + 1;
 		}

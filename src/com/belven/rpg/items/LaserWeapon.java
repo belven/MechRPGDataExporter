@@ -9,6 +9,7 @@ public class LaserWeapon extends RowData {
 	String particle;
 
 	public LaserWeapon() {
+		super(LaserTable);
 		if (laserWeapons.size() > 0) {
 			ID = GetLastID() + 1;
 		}
@@ -24,9 +25,13 @@ public class LaserWeapon extends RowData {
 		return rowData.toArray(new String[0]);
 	}
 
-	public static LaserWeapon CreateLaserWeapon(String inName, String inMesh, int inMaxStack, float inRange, float inHealthChange, boolean inHeals, float accuracy, String inParticle) {
-		Item i = Item.CreateItem(inName, inMesh, inMaxStack, ItemType.Weapon);
-		Weapon w = Weapon.CreateWeapon(i.ID, inRange, inHealthChange, inHeals, WeaponType.Laser);
+	public static LaserWeapon CreateLaserWeapon(ItemData itemData, WeaponData data, float accuracy, String inParticle) {
+		itemData.type = ItemType.Weapon;
+		Item i = Item.CreateItem(itemData);
+		
+		data.itemID = i.ID;
+		data.type = WeaponType.Laser;
+		Weapon w = Weapon.CreateWeapon(data);
 		RangedWeapon rw = RangedWeapon.CreateRangedWeapon(w.ID, accuracy);
 
 		LaserWeapon lw = new LaserWeapon();

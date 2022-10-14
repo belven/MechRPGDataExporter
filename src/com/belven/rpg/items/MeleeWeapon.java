@@ -10,6 +10,7 @@ public class MeleeWeapon extends RowData {
 	float cleaveRadius;
 
 	public MeleeWeapon() {
+		super(WeaponTable);
 		if (meleeWeapons.size() > 0) {
 			ID = GetLastID() + 1;
 		}
@@ -25,9 +26,13 @@ public class MeleeWeapon extends RowData {
 		return rowData.toArray(new String[0]);
 	}
 
-	public static MeleeWeapon CreateMeleeWeapon(String inName, String inMesh, int inMaxStack, float inRange, float inHealthChange, boolean inHeals, float inCleaveRadius) {
-		Item i = Item.CreateItem(inName, inMesh, inMaxStack, ItemType.Weapon);
-		Weapon w = Weapon.CreateWeapon(i.ID, inRange, inHealthChange, inHeals, WeaponType.Melee);
+	public static MeleeWeapon CreateMeleeWeapon(ItemData itemData, WeaponData data, float inCleaveRadius) {
+		itemData.type = ItemType.Weapon;
+		Item i = Item.CreateItem(itemData);
+
+		data.itemID = i.ID;
+		data.type = WeaponType.Melee;
+		Weapon w = Weapon.CreateWeapon(data);
 
 		MeleeWeapon mw = new MeleeWeapon();
 		mw.cleaveRadius = inCleaveRadius;

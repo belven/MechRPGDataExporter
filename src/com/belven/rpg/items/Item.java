@@ -5,17 +5,19 @@ import java.util.ArrayList;
 public class Item extends RowData {
 	public static String Item_Table = "\\ItemData.csv";
 	public static ArrayList<Item> items = new ArrayList<Item>();
+	private ItemData data;
 
-	protected String name;
-	protected String mesh;
-	protected int maxStatck;
-	protected ItemType type;
+	public ItemData GetData() {
+		return data;
+	}
 
-	public Item() {
+	public Item(ItemData inData) {
+		super(Item_Table);
 		if (items.size() > 0) {
 			ID = GetLastID() + 1;
 		}
 
+		data = inData;
 		items.add(this);
 	}
 
@@ -24,23 +26,20 @@ public class Item extends RowData {
 		return items.get(items.size() - 1).ID;
 	}
 
-	public static Item CreateItem(String name, String mesh, int maxStatck, ItemType type) {
-		Item i = new Item();
-		i.name = name;
-		i.mesh = mesh;
-		i.maxStatck = maxStatck;
-		i.type = type;
-		return i;
+	public static Item CreateItem(ItemData data) {
+		return new Item(data);
 	}
 
 	@Override
 	public String[] CreateData() {
 		ArrayList<String> rowData = new ArrayList<String>();
 		rowData.add(GetString(ID));
-		rowData.add(name);
-		rowData.add(type.toString());
-		rowData.add(mesh);
-		rowData.add(GetString(maxStatck));
+		rowData.add(GetData().name);
+		rowData.add(GetData().type.toString());
+		rowData.add(GetData().mesh);
+		rowData.add(GetString(GetData().maxStatck));
 		return rowData.toArray(new String[0]);
 	}
+
+
 }
