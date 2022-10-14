@@ -10,6 +10,8 @@ import com.belven.rpg.items.Item;
 import com.belven.rpg.items.ItemData;
 import com.belven.rpg.items.LaserWeapon;
 import com.belven.rpg.items.MeleeWeapon;
+import com.belven.rpg.items.ProjectileWeapon;
+import com.belven.rpg.items.ProjectileWeaponData;
 import com.belven.rpg.items.RangedWeapon;
 import com.belven.rpg.items.RowData;
 import com.belven.rpg.items.Weapon;
@@ -21,13 +23,11 @@ public class App {
 	static String tablesFolder = "D:\\Unreal Projects\\MechRPG\\Source\\Tables";
 
 	static {
-		tablesRows.add(LaserWeapon.CreateLaserWeapon(new ItemData("Test Laser Weapon 1", "Laser 1", 1), new WeaponData(500, 30, false), 1, "Particle Path"));
-		tablesRows.add(LaserWeapon.CreateLaserWeapon(new ItemData("Test Laser Weapon 2", "Laser 2", 1), new WeaponData(500, 30, false), 1, "Particle Path"));
-		tablesRows.add(LaserWeapon.CreateLaserWeapon(new ItemData("Test Laser Weapon 3", "Laser 3", 1), new WeaponData(500, 30, false), 1, "Particle Path"));
-		tablesRows.add(MeleeWeapon.CreateMeleeWeapon(new ItemData("Test Melee Weapon 1", "Melee 1", 1), new WeaponData(500, 30, false), 300));
-		tablesRows.add(LaserWeapon.CreateLaserWeapon(new ItemData("Test Laser Weapon 4", "Laser 4", 1), new WeaponData(500, 30, false), 1, "Particle Path"));
-		tablesRows.add(MeleeWeapon.CreateMeleeWeapon(new ItemData("Test Melee Weapon 2", "Melee 2", 1), new WeaponData(500, 30, false), 300));
-		tablesRows.add(LaserWeapon.CreateLaserWeapon(new ItemData("Test Laser Weapon 5", "Laser 5", 1), new WeaponData(500, 30, false), 1, "Particle Path"));
+		tablesRows.add(LaserWeapon.CreateLaserWeapon(new ItemData("Damaging Laser Weapon", "Laser 1", 1), new WeaponData(500, 30, 1, false), 0.9f, "Particle Path"));
+		tablesRows.add(LaserWeapon.CreateLaserWeapon(new ItemData("Healing Laser Weapon", "Laser 2", 1), new WeaponData(500, 20, 1, true), 1, "Particle Path"));
+		tablesRows.add(MeleeWeapon.CreateMeleeWeapon(new ItemData("Test Melee Weapon 1", "Melee 1", 1), new WeaponData(500, 30, 1, false), 300));
+		tablesRows.add(MeleeWeapon.CreateMeleeWeapon(new ItemData("Test Melee Weapon 2", "Melee 2", 1), new WeaponData(500, 30, 1, false), 300));
+		tablesRows.add(ProjectileWeapon.CreateProjectileWeapon(new ItemData("Test Projectile Weapon 1", "Projectile 1", 1), new WeaponData(500, 30, 1, false), 1, new ProjectileWeaponData("Projectile", 50, 1.2f)));
 		tablesRows.add(Armour.CreateArmour(new ItemData("Headpiece", "Head", 1), ArmourPosition.Head, 0.1f, 0.1f, 0.1f));
 		tablesRows.add(Armour.CreateArmour(new ItemData("Chestpiece", "Chest", 1), ArmourPosition.Chest, 0.1f, 0.1f, 0.1f));
 		tablesRows.add(Armour.CreateArmour(new ItemData("Left Arm", "Arm", 1), ArmourPosition.LeftArm, 0.1f, 0.1f, 0.1f));
@@ -52,10 +52,11 @@ public class App {
 	public static void main(String[] args) {
 		SaveRowData(Item.items);
 		SaveRowData(Weapon.weapons);
-		SaveRowData(RangedWeapon.rangedWeapons);	
-		SaveRowData(LaserWeapon.laserWeapons);	
-		SaveRowData(MeleeWeapon.meleeWeapons);	
-		SaveRowData(Armour.armour);	
+		SaveRowData(RangedWeapon.rangedWeapons);
+		SaveRowData(LaserWeapon.laserWeapons);
+		SaveRowData(MeleeWeapon.meleeWeapons);
+		SaveRowData(ProjectileWeapon.ProjectileWeapons);
+		SaveRowData(Armour.armour);
 	}
 
 	static <T extends RowData> void SaveRowData(ArrayList<T> data) {
