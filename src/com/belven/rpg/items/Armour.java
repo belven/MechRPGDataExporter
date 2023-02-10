@@ -8,9 +8,6 @@ public class Armour extends RowData {
 
 	int itemID;
 	ArmourPosition armourPosition;
-	float physicalResistance;
-	float blastResistance;
-	float energyResistance;
 
 	public Armour() {
 		super(ArmourTable);
@@ -21,15 +18,18 @@ public class Armour extends RowData {
 		armour.add(this);
 	}
 
-	public static Armour CreateArmour(ItemData itemData,ArmourPosition armourPosition, float physicalResistance, float blastResistance, float energyResistance) {
+	public static Armour CreateArmour(ItemData itemData, ArmourPosition armourPosition, ArmourResistanceData... resistances) {
 		itemData.type = ItemType.Armour;
 		Item i = Item.CreateItem(itemData);
 		Armour a = new Armour();
 		a.itemID = i.ID;
 		a.armourPosition = armourPosition;
-		a.physicalResistance = physicalResistance;
-		a.blastResistance = blastResistance;
-		a.energyResistance = energyResistance;
+		
+		for(ArmourResistanceData ard : resistances) {
+			ard.armourID = a.ID;
+			ArmourResistance.CreateArmourResistance(ard);			
+		}
+		
 		return a;
 	}
 
@@ -39,9 +39,6 @@ public class Armour extends RowData {
 		rowData.add(GetString(ID));
 		rowData.add(GetString(itemID));
 		rowData.add(armourPosition.toString());
-		rowData.add(GetString(physicalResistance));
-		rowData.add(GetString(blastResistance));
-		rowData.add(GetString(energyResistance));
 		return rowData.toArray(new String[0]);
 	}
 

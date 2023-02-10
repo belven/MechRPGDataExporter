@@ -37,9 +37,9 @@ public class ProjectileWeapon extends RowData {
 		RangedWeapon rw = RangedWeapon.CreateRangedWeapon(w.ID, accuracy);
 
 		inProjectileData.rangedWeaponID = rw.ID;
-		ProjectileWeapon lw = new ProjectileWeapon();
-		lw.data = inProjectileData;
-		return lw;
+		ProjectileWeapon pw = new ProjectileWeapon();
+		pw.data = inProjectileData;
+		return pw;
 	}
 
 	@Override
