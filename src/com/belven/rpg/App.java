@@ -8,10 +8,13 @@ import com.belven.rpg.items.Armour;
 import com.belven.rpg.items.ArmourPosition;
 import com.belven.rpg.items.ArmourResistance;
 import com.belven.rpg.items.ArmourResistanceData;
+import com.belven.rpg.items.CharacterType;
 import com.belven.rpg.items.DamageType;
 import com.belven.rpg.items.Item;
 import com.belven.rpg.items.ItemData;
 import com.belven.rpg.items.LaserWeapon;
+import com.belven.rpg.items.Loadout;
+import com.belven.rpg.items.LoadoutData;
 import com.belven.rpg.items.MeleeWeapon;
 import com.belven.rpg.items.ProjectileWeapon;
 import com.belven.rpg.items.ProjectileWeaponData;
@@ -26,18 +29,22 @@ public class App {
 	static String tablesFolder = "D:\\Unreal Projects\\MechRPG\\Source\\Tables";
 
 	static {
+		//Weapons
 		tablesRows.add(LaserWeapon.CreateLaserWeapon(new ItemData("Damaging Laser Weapon", "Laser 1", 1), new WeaponData(500, 60, 0.1f, false), 0.9f, "Particle Path"));
 		tablesRows.add(LaserWeapon.CreateLaserWeapon(new ItemData("Healing Laser Weapon", "Laser 2", 1), new WeaponData(500,720, 1, true), 1, "Particle Path"));
 		tablesRows.add(MeleeWeapon.CreateMeleeWeapon(new ItemData("Test Melee Weapon 1", "Melee 1", 1), new WeaponData(500, 30, 1, false), 300));
 		tablesRows.add(MeleeWeapon.CreateMeleeWeapon(new ItemData("Test Melee Weapon 2", "Melee 2", 1), new WeaponData(500, 30, 1, false), 300));
 		tablesRows.add(ProjectileWeapon.CreateProjectileWeapon(new ItemData("Test Projectile Weapon 1", "Projectile 1", 1), new WeaponData(500, 30, 0.1f, false), 1, new ProjectileWeaponData("Projectile", 50, 1.2f)));
-		tablesRows.add(Armour.CreateArmour(new ItemData("Headpiece", "Head", 1), ArmourPosition.Head, new ArmourResistanceData(0.2f, DamageType.Kinetic)));
-		tablesRows.add(Armour.CreateArmour(new ItemData("Chestpiece", "Chest", 1), ArmourPosition.Chest, new ArmourResistanceData(0.2f, DamageType.Kinetic)));
-		tablesRows.add(Armour.CreateArmour(new ItemData("Left Arm", "Arm", 1), ArmourPosition.LeftArm, new ArmourResistanceData(0.2f, DamageType.Eletric)));
-		tablesRows.add(Armour.CreateArmour(new ItemData("Right Arm", "Arm", 1), ArmourPosition.RightArm, new ArmourResistanceData(0.2f, DamageType.Kinetic)));
-		tablesRows.add(Armour.CreateArmour(new ItemData("Left Leg", "Leg", 1), ArmourPosition.LeftLeg, new ArmourResistanceData(0.2f, DamageType.Fire)));
-		tablesRows.add(Armour.CreateArmour(new ItemData("Right Leg", "Leg", 1), ArmourPosition.RightLeg, new ArmourResistanceData(0.2f, DamageType.Kinetic)));
-		tablesRows.add(Armour.CreateArmour(new ItemData("Left Arm", "Arm", 1), ArmourPosition.LeftArm, new ArmourResistanceData(0.2f, DamageType.Kinetic)));
+		
+		// Armour
+		tablesRows.add(Armour.CreateArmour(new ItemData("Headpiece", "Head", 1), ArmourPosition.Head, new ArmourResistanceData(5f, DamageType.Kinetic), new ArmourResistanceData(5f, DamageType.Fire)));
+		tablesRows.add(Armour.CreateArmour(new ItemData("Chestpiece", "Chest", 1), ArmourPosition.Chest, new ArmourResistanceData(5f, DamageType.Kinetic)));
+		tablesRows.add(Armour.CreateArmour(new ItemData("Left Arm", "Arm", 1), ArmourPosition.LeftArm, new ArmourResistanceData(5f, DamageType.Eletric)));
+		tablesRows.add(Armour.CreateArmour(new ItemData("Right Arm", "Arm", 1), ArmourPosition.RightArm, new ArmourResistanceData(5f, DamageType.Kinetic)));
+		tablesRows.add(Armour.CreateArmour(new ItemData("Left Leg", "Leg", 1), ArmourPosition.LeftLeg, new ArmourResistanceData(5f, DamageType.Fire)));
+		tablesRows.add(Armour.CreateArmour(new ItemData("Right Leg", "Leg", 1), ArmourPosition.RightLeg, new ArmourResistanceData(5f, DamageType.Kinetic)));
+		
+		tablesRows.add(Loadout.CreateLoadout(new LoadoutData(1, 4, 5, 6, 9, 10, 7,  8, 0, 0, 0, 1000, 800, CharacterType.Enemy)));
 	}
 
 	public static void SaveData(ArrayList<String[]> data, String filePath) {
@@ -61,6 +68,7 @@ public class App {
 		SaveRowData(ProjectileWeapon.ProjectileWeapons);
 		SaveRowData(Armour.armour);
 		SaveRowData(ArmourResistance.ArmourResistances);
+		SaveRowData(Loadout.loadouts);
 	}
 
 	static <T extends RowData> void SaveRowData(ArrayList<T> data) {
